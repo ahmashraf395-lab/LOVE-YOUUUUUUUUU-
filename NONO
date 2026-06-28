@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة خاصة</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #ff9a9e, #fad0c4); height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+        .slide { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 85%; max-width: 400px; text-align: center; display: none; }
+        .active { display: block; }
+        .flower { font-size: 70px; cursor: pointer; }
+        .scroll-container { display: flex; overflow-x: auto; gap: 10px; padding: 15px 0; }
+        img { width: 150px; height: 150px; border-radius: 15px; object-fit: cover; flex-shrink: 0; }
+        button { background: #ff6b81; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        audio { width: 100%; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div id="s1" class="slide active">
+    <h3>ENTER PASSWORD</h3>
+    <input type="password" id="pass" placeholder="اكتبي الباسورد">
+    <br><button onclick="checkPass()">دخول</button>
+</div>
+
+<div id="s2" class="slide">
+    <div class="flower" onclick="showMsg()">🌸</div>
+    <p id="msg" style="display:none; color: #d63384; font-weight: bold;">
+        من أول يوم عرفتك وأنا حاسس إن حياتي بقت أحلى. ضحكتك بتخليني أنسى أي هم، وكلامك بيديني طاقة وحب. إنتي مش بس جزء من حياتي، إنتي حياتي كلها. بحبك من قلبي، وهفضل أحبك طول العمر🩷🌸
+    </p>
+    <button onclick="next(3)">التالي</button>
+</div>
+
+<div id="s3" class="slide">
+    <h3>One Memories 📸</h3>
+    <audio controls><source src="music.mp3" type="audio/mpeg"></audio>
+    <div class="scroll-container">
+        <img src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+    </div>
+    <p>بقالنا مع بعض: <span id="timer"></span></p>
+    <button onclick="next(4)">التالي</button>
+</div>
+
+<div id="s4" class="slide">
+    <p>على طول... مهما الدنيا ودتنا فين... هتفضل إنت أغلى حد عندي. أماني وبيتي اللي برتاح فيه 🎀</p>
+</div>
+
+<script>
+    // تم تحديث الباسورد هنا ليكون 3320
+    function checkPass() { if(document.getElementById('pass').value == '3320') next(2); else alert('الباسورد غلط!'); }
+    function showMsg() { document.getElementById('msg').style.display = 'block'; }
+    function next(n) { document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); document.getElementById('s'+n).classList.add('active'); }
+    
+    // تاريخ الخطوبة
+    const start = new Date("2025-01-30"); 
+    function update() {
+        const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
+        document.getElementById('timer').innerText = diff + " يوم";
+    }
+    update();
+</script>
+</body>
+</html>
+
